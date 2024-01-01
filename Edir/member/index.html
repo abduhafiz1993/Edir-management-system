@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edir Member page</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/bootstrap-4.4.1-dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/style/style.css" />
+
+    <link rel="stylesheet" href="indexsof.css" />
+    <style>
+      .hidden {
+        display: none;
+      }
+    </style>
+    <style>
+      /* CSS styles for the active navigation link */
+      .active {
+        font-weight: bold;
+
+        text-decoration: underline #ff6613;
+        text-decoration-thickness: 5px;
+      }
+      .features {
+        margin-top: 60px;
+      }
+      .profilePic {
+        height: 40px;
+        width: 40px;
+        border: 1px solid #ff6613;
+        border-radius: 50%;
+        transform: translateY(-10%);
+      }
+    </style>
+    <style>
+      iframe {
+        display: none;
+        transform: translateY(-10%);
+        position: relative;
+      }
+    </style>
+    <script type="text/javascript">
+      const nonegoogle = document.getElementById("google_translate_element");
+      nonegoogle;
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          { pageLanguage: "en", includedLanguages: "am,en,om" },
+          "google_translate_element"
+        );
+      }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script
+      type="text/javascript"
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <img
+        class="navbar-brand logo"
+        src="../asset/mylast logo.png"
+        height="40px"
+        width="150px"
+      />
+      <div class="container">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fa-solid fa-bars toggleSidebar"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#home" onclick="showSection('home')"
+                >Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link menu"
+                href="#events"
+                onclick="showSection('events')"
+                ><i class="fa-solid fa-bell"></i>Events
+                <span class="notification-event-count"></span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link menu"
+                href="#tasks"
+                onclick="showSection('tasks')"
+                ><i class="fa-solid fa-check-double"></i>Tasks
+                <span class="task_notification_count"></span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link menu"
+                href="#voting"
+                onclick="showSection('voting')"
+                ><i class="fa-solid fa-check-to-slot"></i>Voting
+                <span class="voting_notification_count">2</span></a
+              >
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                href="#property"
+                onclick="showSection('property')"
+                >Property</a
+              >
+            </li>
+         
+            <li class="nav-item right-align">
+              <a
+                class="nav-link"
+                href="#profile"
+                id="pp"
+                onclick="showSection('profile')"
+              >
+                username
+                <img
+                  src="profile.jpg"
+                  height="40px"
+                  width="40px"
+                  alt="pp"
+                  style="border: 2px solid red; border-radius: 50%"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="features member-page">
+      <!-- Home section content starts here -->
+      <div id="home" class="section">
+        <div
+          style="
+            background-image: url(imagesofindex/abba-jiffar-palace-jimma-ethiopia-fanos-ethipia-tours-and-travel.webp);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+          "
+        >
+          <div class="welcome">
+            <h1>WELCOME TO GINGO EDIR</h1>
+            <p>
+              Gingo Edir is one of the oldest Edir in Jimma. It was established
+              in 1930 E.C. It is located in Jimma town, Jiren Kebele. It has 100
+              members. It has 5 leaders and 5 assistants. It has 5 committees.
+              These are: Property management, Event announcement, Voting, Task
+              allocation and Member management.
+            </p>
+          </div>
+        </div>
+        <section class="card-container">
+          <div class="card">
+            <img src="imagesofindex/images (1).jpg" alt="" />
+            <h3>Jimma</h3>
+            <p>Located in jimma</p>
+          </div>
+          <div class="card">
+            <img src="imagesofindex/images (2).jpg" alt="" />
+            <h3>Community</h3>
+            <p>for Jimma community</p>
+          </div>
+          <div class="card">
+            <img src="imagesofindex/images (3).jpg" alt="" />
+            <h3>Traditional</h3>
+            <p>Based on Tradition</p>
+          </div>
+        </section>
+        <section>
+          <div class="discription-card card">
+            <h2>History of Gingo Edir</h2>
+            <p>
+              What is now Jimma's northern suburb of Jiren was the capital of a
+              large Kaffa province until the Oromos migrated to the region in
+              the
+              <b>18th century</b>. Originally named Hirmata before the Oromo
+              invasion. The city owed its importance in the <b>19th</b> century
+              to on his journey from the Somali coast through Ethiopia to the
+              Sudan. As he observed, “Jimma is almost the richest land of
+              Abyssinia; the inhabitants are pure, well-built Galla; they are
+              nearly all Mohammedans, as is their king, Abba Jifar, a very
+              clever man, who submitted to Menelik at the right time and,
+              therefore, retained his country”
+            </p>
+          </div>
+        </section>
+        <div id="google_translate_element"></div>
+      </div>
+      <!-- Home section content ends here -->
+
+      <!-- Events section content starts here -->
+      <div id="events" class="section member">
+        <h1>Events</h1>
+      </div>
+      <!-- Events section content ends here -->
+      <div id="payment" class="section payment" ></div>
+      <!-- Tasks section content starts here -->
+      <div id="tasks" class="section">
+        <div class="task-viewer container">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="Header-short-line">My task</h3>
+            </div>
+            <div class="card-body my-task"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Voting section content starts here -->
+      <div id="voting" class="section">
+        <div class="container">
+          <div class="card mt-5">
+            <div id="request" class="card-header">
+              <h4 class="">
+                Do you Want to be candidate for the election ?
+                <button id="yesButton" class="btn btn-primary">YES</button>
+              </h4>
+            </div>
+            <div id="formSection" class="request_form m-2 p-3">
+              <h3 class="Header-short-line">candidation request form</h3>
+              <form onsubmit="voteSubmit()">
+                <div class="form-group">
+                  <label for="campaignLetter">Campaign Letter</label>
+                  <textarea
+                    onchange="handleVoteChange()"
+                    class="form-control"
+                    id="campaignLetter"
+                    name="letter"
+                    rows="5"
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="educationLevel">Education Level</label>
+                  <input
+                    onchange="handleVoteChange()"
+                    type="text"
+                    class="form-control"
+                    name="education"
+                    id="educationLevel"
+                  />
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+            <div id="votecandidate" class="votecandidate">
+              <div class="card-header">
+                <h3 class="Header-short-line">Who you wanna Vote?</h3>
+              </div>
+              <div class="card-body candidate-list"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Voting section content ends here -->
+
+      <!-- Property section content starts here -->
+      <div id="property" class="section container property-list">
+        <h1>Property</h1>
+      </div>
+      <!-- Property section content ends here -->
+      <style>
+        .section > div {
+          margin: auto;
+        }
+      </style>
+      <!-- Profile section content starts here -->
+      <div id="profile" class="section container memberProfile"></div>
+      <!-- Profile section content ends here -->
+    </div>
+    <div
+      class="modal fade"
+      id="successModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Success Message</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Your submission was successful!</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="warningModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Error message</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>unfortunatly error ocur</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-warning" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function checkLoginStatus() {
+        if (localStorage.getItem("username")) {
+          const username = localStorage.getItem("username");
+          console.log(username);
+          const islogin = localStorage.getItem("loginStatus");
+          const role = localStorage.getItem("role");
+          const check = { username, islogin, role };
+          fetch(`http://${URL}:8080/Edir/edir_api/user/login/check`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(check),
+          })
+            .then((response) => response.json())
+            .then((login) => {
+              console.log(login.islogin);
+              if (login.islogin) {
+                console.log(" logged in");
+              } else {
+                setTimeout(function () {
+                  window.location.href = "/Landing";
+                }, 2000);
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        } else {
+          setTimeout(function () {
+            window.location.href = "/Landing";
+          }, 2000);
+        }
+      }
+      checkLoginStatus();
+      const username = localStorage.getItem("username");
+      function synchronizeTaskNotification() {
+        const url = `http://${URL}:8080/Edir/edir_api/user/Task/mytask`;
+        const input = {
+          username,
+        };
+        fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(input),
+        })
+          .then((response) => response.json())
+          .then((task) => {
+            const notification = document.querySelector(
+              ".task_notification_count"
+            );
+            notification.textContent = "";
+            let count = 0;
+            if (task && Array.isArray(task)) {
+              task.forEach((tsk) => {
+                if (tsk.seen === 0) {
+                  count++;
+                }
+              });
+              if (count !== 0) {
+                notification.textContent = count;
+              } else {
+                notification.style.display = "none";
+              }
+            }
+          });
+      }
+      synchronizeVote(username);
+      synchronizeTaskNotification();
+    </script>
+
+    <script>
+      let user = {};
+      // user.add();
+      //fetch user
+      const url = `http://192.168.13.20:8080/Edir/Edir_api/${username}`;
+      fetch(url)
+        .then((response) => response.json())
+        .then((users) => {
+          if (users && Array.isArray(users)) {
+            const a = users.filter((us) => us.username === username);
+            user = a[0];
+            console.log("hello", user);
+            const pp = document.getElementById("pp");
+            pp.textContent = "";
+            const span = document.createElement("span");
+            span.textContent = user.username + " ";
+            const profileImage = document.createElement("img");
+            profileImage.classList = "profilePic";
+
+            profileImage.src = "../Edir_api/pic/" + user.profilePic;
+            pp.append(span);
+            pp.append(profileImage);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      function synchronizeEvent(username) {
+        const url = `http://${URL}:8080/Edir/edir_api/user/Event/new`;
+        // Assuming you have a variable 'username' that holds the current username
+        fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username: username }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            const notification = document.querySelector(
+              ".notification-event-count"
+            );
+            console.log(data);
+            // Process the new messages
+            if (data.length > 0) {
+              showNotification("New Message", "You have a new message");
+              notification.textContent = data.length;
+            } else {
+              notification.style.display = "none";
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+      showSection("home");
+      function showSection(sectionId) {
+        // Hide all sections
+        var sections = document.getElementsByClassName("section");
+        for (var i = 0; i < sections.length; i++) {
+          sections[i].style.display = "none";
+          if (window.innerWidth <= 1050) {
+            // Get all the nav-items
+            const navItems = document.querySelectorAll(".nav-item");
+
+            // Add an event listener to each nav-item
+            navItems.forEach((navItem) => {
+              navItem.addEventListener("click", () => {
+                const navbar = document.querySelector(".navbar-collapse");
+                if (navbar.classList.contains("show")) {
+                  navbar.classList.remove("show");
+                }
+              });
+            });
+          }
+        }
+
+        // Show the selected section
+        var selectedSection = document.getElementById(sectionId);
+        selectedSection.style.display = "block";
+
+        // Set the active navigation link
+        var navLinks = document.getElementsByClassName("nav-link");
+        for (var j = 0; j < navLinks.length; j++) {
+          navLinks[j].classList.remove("active");
+        }
+        var activeLink = document.querySelector('a[href="#' + sectionId + '"]');
+        activeLink.classList.add("active");
+
+        if (sectionId === "events") {
+          Events();
+        } else if (sectionId === "home") {
+          synchronizeEvent(username);
+        } else if (sectionId === "tasks") {
+          myTask();
+        } else if (sectionId === "voting") {
+          getCandidate();
+        } else if (sectionId === "profile") {
+          MemberDetail(user);
+        } else if (sectionId === "property") {
+          propertyList();
+        } else if (sectionId === "payment") {
+          payment();
+        }
+      }
+
+      // to requast
+      const yesButton = document.getElementById("yesButton");
+      const formSection = document.getElementById("formSection");
+      const votecandidate = document.getElementById("votecandidate");
+      const request = document.getElementById("request");
+
+      yesButton.addEventListener("click", function () {
+        yesButton.style.display = "none";
+        request.style.display = "none";
+        votecandidate.style.display = "none";
+        formSection.style.display = "block";
+      });
+    </script>
+    <script src="./payment.js"></script>
+    <script src="./properties.js"></script>
+    <script src="./Events.js"></script>
+    <script src="./VotingSystem.js"></script>
+    <script src="./TaskApp.js"></script>
+    <script src="./MemberProfile.js"></script>
+    <script src="/srcipt/registration.js"></script>
+    <script src="/srcipt/constant.js"></script>
+    <script src=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

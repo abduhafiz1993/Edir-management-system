@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data Display</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Data Display</h1>
+      <table class="table table-hover table-light">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Picture</th>
+            <th>Name</th>
+            <th>Bought Date</th>
+          </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+
+    <script>
+      // Fetch data from server using GET method
+      fetch(`http://localhost:8080/Edir/edir_api/property`)
+        .then((response) => response.json())
+        .then((data) => {
+          // Generate table rows dynamically
+          let tableBody = document.getElementById("table-body");
+          let rowNumber = 1;
+          data.forEach((item) => {
+            console.log(item)
+            let row = document.createElement("tr");
+            row.innerHTML = `
+            <td>${rowNumber++}</td>
+            <td><img src="../Edir_api/pic/${
+              item.picName
+
+            }" alt="Picture" width="50"></td>
+            <td>${item.propertName}</td>
+            <td>${item.boughtDate}</td>
+          `;
+            tableBody.appendChild(row);
+          });
+        })
+        .catch((error) => console.error(error));
+    </script>
+  </body>
+</html>

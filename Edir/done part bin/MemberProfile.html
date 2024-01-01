@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Member</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="./bootstrap-4.4.1-dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+   
+  </head>
+  <body>
+    <div class="container"></div>
+    <script>
+      function EditMember(user) {
+        const container = document.querySelector(".container");
+        container.innerHTML = `   <div class="card">
+               <div class="card-header">
+                 <h5 class="Header-short-line">Member profile</h5>
+               </div>
+               <div class="registration-form">
+                 <form id="userForm">
+                   <div class="form-group">
+                     <label for="firstName">First Name</label>
+                     <input
+                       type="text"
+                       class="form-control"
+                       id="firstName"
+                       placeholder="First Name"
+                     />
+                   </div>
+                   <div class="form-group">
+                     <label for="lastName">Last Name</label>
+                     <input
+                       type="text"
+                       class="form-control"
+                       id="lastName"
+                       placeholder="Last Name"
+                     />
+                   </div>
+                   <div class="form-group">
+                     <label for="email">Email</label>
+                     <input
+                       type="email"
+                       class="form-control"
+                       id="email"
+                       placeholder="Email"
+                     />
+                   </div>
+                   <div class="form-group">
+                     <label for="phoneNumber">Phone Number</label>
+                     <input
+                       type="tel"
+                       class="form-control"
+                       id="phoneNumber"
+                       placeholder="Phone Number"
+                     />
+                   </div>
+                   <div class="form-group">
+                     <label for="address">Address</label>
+                     <input
+                       type="text"
+                       class="form-control"
+                       id="address"
+                       placeholder="Address"
+                     />
+                   </div>
+                   <div class="form-group">
+                     <label for="birthdate">Birth Date</label>
+                     <input type="date" class="form-control" id="birthdate" />
+                   </div>
+                   <div class="form-group">
+                     <label for="role">Role</label>
+                     <select class="form-control" id="role">
+                       <option value="admin">Admin</option>
+                       <option value="member">Member</option>
+                       <option value="assistant">Assistant</option>
+                     </select>
+                   </div>
+                   <button type="submit" class="btn btn-primary">Submit</button>
+                 </form>
+               </div>
+             </div>`;
+        document.getElementById("firstName").value = user.fname;
+        document.getElementById("lastName").value = user.lname;
+        document.getElementById("email").value = user.email;
+        document.getElementById("phoneNumber").value = user.phoneNumber;
+        document.getElementById("address").value = user.Address;
+        document.getElementById("birthdate").value = user.birthdate;
+        document.getElementById("role").value = user.role;
+
+        // Handle form submission
+        document
+          .getElementById("userForm")
+          .addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent the form from submitting
+
+            // Update the user object with the form input values
+            user.fname = document.getElementById("firstName").value;
+            user.lname = document.getElementById("lastName").value;
+            user.email = document.getElementById("email").value;
+            user.phoneNumber = document.getElementById("phoneNumber").value;
+            user.address = document.getElementById("address").value;
+            user.birthdate = document.getElementById("birthdate").value;
+            user.role = document.getElementById("role").value;
+            console.log(user);
+            // Display the updated user object in the console
+
+            handleSubmit("http://localhost:8080/Edir/Edir_api/user/save", user);
+          });
+      }
+      // User data
+      function MemberDetail() {
+        const user = {
+          id: 73,
+          fname: "after",
+          lname: "year",
+          username: "after",
+          sex: "male",
+          email: "tokkiyuam@gmail.com",
+          phoneNumber: 1234567,
+          password: "tfg",
+          Address: "aaa",
+          birthdate: "2023-06-14",
+          role: "member",
+          joinedDate: "2023-06-21",
+        };
+        const container = document.querySelector(".container");
+        container.textContent = "";
+
+        const card = document.createElement("div");
+        card.classList.add("card");
+
+        const cardHeader = document.createElement("div");
+        cardHeader.classList.add("card-header");
+        const cardHeaderTitle = document.createElement("h5");
+        cardHeaderTitle.classList.add("Header-short-line");
+        cardHeaderTitle.textContent = "Member profile";
+        cardHeader.appendChild(cardHeaderTitle);
+
+        const cardBody = document.createElement("div");
+        cardBody.classList.add("card-body", "user-detail", "m-auto");
+
+        const profilePicture = document.createElement("div");
+        profilePicture.classList.add("profile-picture", "m-auto");
+        const profileImage = document.createElement("img");
+        profileImage.src = "/member/profile.jpg";
+        profileImage.alt = "Profile Picture";
+        profilePicture.appendChild(profileImage);
+
+        const table = document.createElement("table");
+
+        const data = [
+          { label: "Name:", value: "Tola badhasa" },
+          { label: "username:", value: "tola" },
+          { label: "Email:", value: "tola@gma.com" },
+          { label: "phoneNumber:", value: "08301739" },
+          { label: "address:", value: "askdgk asdkabdks,d asd" },
+          { label: "Email:", value: "tola@gma.com" },
+          { label: "Joined Date:", value: "3209203" },
+        ];
+
+        data.forEach((item) => {
+          const row = document.createElement("tr");
+          const labelCell = document.createElement("td");
+          const valueCell = document.createElement("td");
+          labelCell.textContent = item.label;
+          valueCell.textContent = item.value;
+          row.appendChild(labelCell);
+          row.appendChild(valueCell);
+          table.appendChild(row);
+        });
+
+        const editButton = document.createElement("button");
+        editButton.classList.add("btn", "btn-secondary");
+        editButton.textContent = "Edit";
+
+        editButton.addEventListener("click", () => {
+          EditMember(user);
+        });
+
+        cardBody.appendChild(profilePicture);
+        cardBody.appendChild(table);
+        cardBody.appendChild(editButton);
+
+        card.appendChild(cardHeader);
+        card.appendChild(cardBody);
+
+        container.appendChild(card);
+      } // Populate form fields with user data
+      MemberDetail();
+      //CREATING ACTION BUTTONS
+    </script>
+    <script src="/registration.js"></script>
+  </body>
+</html>

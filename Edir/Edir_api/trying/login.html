@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>User Login</title>
+  </head>
+  <body>
+    <h2>User Login</h2>
+    <form id="loginForm">
+      <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+      </div>
+      <div>
+        <input type="submit" value="Login" />
+      </div>
+    </form>
+
+    <script>
+      const loginForm = document.getElementById("loginForm");
+
+      const username = "chala";
+      const password = "cvxcdgjhk";
+
+      const loginData = {
+        username,
+        password,
+      };
+
+      function login(loginData) {
+        fetch("http://localhost:8080/Edir/edir_api/user/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(loginData),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.loginStatus) {
+              localStorage.setItem("islogin", data.loginStatus);
+              localStorage.setItem("username", data.username);
+              localStorage.setItem("role", data.role);
+              window.location.href = "/Edir/Edir_api/trying/home.html";
+            } else {
+              console.error("Login failed:", data.error);
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+      
+    </script>
+  </body>
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Idir Community</title>
+    <link rel="stylesheet" href="assets/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="/style/style.css" />
+
+    <style>
+      /* Hero Section */
+      .hero-section {
+        background-color: white;
+        padding: 30px 0;
+      }
+
+      .hero-section h1 {
+        font-size: 36px;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .hero-section p {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 40px;
+      }
+
+      .login-section {
+        text-align: right;
+        margin: 12px;
+      }
+
+      .login-section .btn-primary {
+        background-color: #6650f5;
+        border-color: #6650f5;
+        color: #fff;
+        padding: 10px 30px;
+        font-size: 16px;
+        transition: all 0.3s ease;
+      }
+
+      .hero-section .btn-primary:hover {
+        background-color: #6650f5;
+        border-color: #6650f5;
+      }
+
+      /* Features Section */
+      .features-section {
+        padding: 30px 0;
+        background-color: rgb(236, 236, 236);
+      }
+
+      .features-section h3 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 10px;
+      }
+
+      .features-section p {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 30px;
+      }
+
+      .features-section .feature-item i {
+        font-size: 48px;
+        color: #6650f5;
+        margin-bottom: 20px;
+      }
+
+      /* Contact Section */
+      .contact-section {
+        padding: 80px 0;
+        background-color: #fff;
+      }
+
+      .contact-section h2 {
+        font-size: 36px;
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .contact-section p {
+        font-size: 16px;
+        color: #666;
+        margin-bottom: 40px;
+      }
+
+      .contact-section form .form-control {
+        margin-bottom: 20px;
+      }
+      .toggle-hide {
+        display: none;
+      }
+      .toggle-display {
+        display: block;
+      }
+      .features-section .card {
+        border-radius: 10px;
+        min-width: calc(33.33% - 20px);
+        margin-bottom: 20px;
+        background-color: #ffffff;
+        border: unset;
+      }
+      .features-section .card:hover {
+        box-shadow: 0 0 10px 0.3px gray;
+      }
+      .form {
+        width: max-content;
+      }
+      .login {
+        border-radius: 10px;
+        box-shadow: 0 0 13px 0.1px #6650f5;
+      }
+    </style>
+    <style>
+      iframe {
+        display: none;
+        position: relative;
+      }
+    </style>
+    <script type="text/javascript">
+      const nonegoogle = document.getElementById("google_translate_element");
+      nonegoogle;
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          { pageLanguage: "en", includedLanguages: "am,en,om" },
+          "google_translate_element"
+        );
+      }
+    </script>
+    <script
+      type="text/javascript"
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <section class="login-section">
+      <a class="btn btn-primary" href="#" id="loginButton">Login</a>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container">
+        <!-- <div id="google_translate_element"></div> -->
+        <div class="row">
+          <div class="col-sm-6">
+            <img src="../asset/mylast logo.png" alt="" />
+            <h1 class="Header-short-line" style="color: #6650f5">
+              Welcome to<b> Ginjo Guduru Edir Management System</b>
+            </h1>
+            <p>
+              Edir is a social institution in Ethiopia used for mutual aid and
+              grants cooperative insurance within specific community. By
+              participating we receive support and encouragement from fellow
+              members, fostering a sense of unity, collaboration and build
+              meaningful connections.
+            </p>
+          </div>
+          <!-- Login Section -->
+          <section class="col-sm-6 login" id="loginSection">
+            <div class="container">
+              <div class="form">
+                <form>
+                  <br />
+                  <input
+                    class="text"
+                    type="text"
+                    id="username"
+                    placeholder="Username"
+                    required
+                  /><br /><br />
+                  <input
+                    class="text"
+                    id="password"
+                    type="password"
+                    placeholder="Password"
+                    required
+                  /><br /><br />
+                  <input
+                    class="btn-login"
+                    type="submit"
+                    onclick="login()"
+                    value="Log In"
+                  /><br />
+                </form>
+              </div>
+            </div>
+          </section>
+          <div class="col-sm-6" id="heroImage">
+            <img src="Images/Hero.jfif" alt="Hero Image" />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Features Section -->
+    <style>
+      .hero-section {
+        min-height: 70vh;
+      }
+      #heroImage img {
+        min-width: 100%;
+        height: auto;
+        width: auto;
+        max-height: 300px;
+        border-radius: 4%;
+      }
+      .hero-section .col p {
+        text-align: justify;
+        text-indent: 12px;
+      }
+      .hero-section .col img {
+        width: 50%;
+        max-width: 300px;
+        height: auto;
+      }
+      .features-section .card {
+        padding-top: 3%;
+        text-align: center;
+      }
+    </style>
+    <section class="features-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-2 m-2 card">
+            <div class="feature-item">
+              <i class="fas fa-users"></i>
+              <h3>Property Management</h3>
+              <p>
+                By enabling the admin and assistant to record all property
+                informaion on the system database and enables them to display
+                any time.
+              </p>
+            </div>
+          </div>
+          <div class="col-sm-2 m-2 card">
+            <div class="feature-item">
+              <i class="fas fa-hands-helping"></i>
+              <h3>Event Announcement</h3>
+              <p>
+                New events are announced to every member with every detailed
+                informaion by the admins.
+              </p>
+            </div>
+          </div>
+          <div class="col-sm-2 m-2 card">
+            <div class="feature-item">
+              <i class="fas fa-calendar-alt"></i>
+              <h3>Voting</h3>
+              <p>
+                When it is voting session is arrived every members will be able
+                to vote the leader of their Edir by using this system.
+              </p>
+            </div>
+          </div>
+          <div class="col-sm-2 m-2 card">
+            <div class="feature-item">
+              <i class="fas fa-calendar-alt"></i>
+              <h3>Task Alocation</h3>
+              <p>
+                When there is an event tasks are assigned to each user and each
+                member can login to this system and see every detail about task
+                assigned to him/her.
+              </p>
+            </div>
+          </div>
+          <div class="col-sm-2 m-2 card">
+            <div class="feature-item">
+              <i class="fas fa-calendar-alt"></i>
+              <h3>Member Management</h3>
+              <p>
+                Adminstrators can add new members to the system and remove those
+                who have violate the rules and regulations of the Edir.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div
+      class="modal fade"
+      id="warningModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Loggin error</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>password or username is not correct</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-warning" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Contact Section -->
+    <section class="contact-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h2>Contact Us</h2>
+            <p>
+              If you have any questions or would like to get in touch, please
+              feel free to reach out to us.
+            </p>
+          </div>
+          <div class="col-md-6">
+            <form>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Your Name"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Your Email"
+                />
+              </div>
+              <div class="form-group">
+                <textarea
+                  class="form-control"
+                  rows="5"
+                  placeholder="Message"
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      //  const usr=document.getElementById("username");
+      //   const psd=document.getElementById("password");
+
+      function login() {
+        const password = document.getElementById("password").value;
+        const username = document.getElementById("username").value;
+
+        const loginData = {
+          username,
+          password,
+        };
+
+        fetch(`http://${URL}:8080/Edir/edir_api/user/login`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(loginData),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.loginStatus) {
+              localStorage.setItem("islogin", data.loginStatus);
+              localStorage.setItem("username", data.username);
+              localStorage.setItem("role", data.role);
+              if (data.role === "member") {
+                window.location.href = "/member";
+              } else if (data.role === "admin" || data.role === "Admin") {
+                window.location.href = "/Admin";
+              }
+            } else {
+              const successModal = document.getElementById("warningModal");
+              const bootstrapModal = new bootstrap.Modal(successModal);
+              bootstrapModal.show();
+              console.error("Login failed:", data.error);
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+
+      // JavaScript code
+      document
+        .getElementById("loginButton")
+        .addEventListener("click", function () {
+          var loginSection = document.getElementById("loginSection");
+          var loginButton = document.getElementById("loginButton");
+          heroImage.classList.toggle("toggle-hide");
+          loginSection.classList.toggle("toggle-display");
+        });
+    </script>
+    <script>
+      // Smooth scrolling
+      $('a[href^="#"]').on("click", function (event) {
+        var target = $(this.getAttribute("href"));
+        if (target.length) {
+          event.preventDefault();
+          $("html, body").stop().animate(
+            {
+              scrollTop: target.offset().top,
+            },
+            1000
+          );
+        }
+      });
+    </script>
+    <script src="/srcipt/constant.js"></script>
+  </body>
+</html>

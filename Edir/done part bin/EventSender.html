@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notify Member</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="./bootstrap-4.4.1-dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <style>
+   
+  </style>
+  <body>
+    <div class="container">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="Header-short-line">Ginjo Edir Event notification</h5>
+        </div>
+        <div class="card-body sender-chat">
+          <div class="readerChat"></div>
+          <form method="POST" onsubmit="handleEventMsg()">
+            <div class="input-group">
+              <input
+                type="text"
+                onchange="handleChange()"
+                class="form-control"
+                name="message"
+                placeholder="Type your message..."
+              />
+              <div class="input-group-append">
+                <button class="btn btn-primary m-0" type="submit">Send</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="script.js">
+
+      //setInterval(getEvent, 500);
+    </script>
+    <script>
+      getEvent();
+      //   setInterval(getEvent, 500);
+    </script>
+    <script>
+      const input = {};
+
+      function handleChange() {
+        const name = event.target.name;
+        const value = event.target.value;
+        input[name] = value;
+      }
+
+      function handleEventMsg() {
+        event.preventDefault(); // Prevent form submission
+
+        const url = "http://localhost:8080/Edir/edir_api/user/Event";
+        fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(input),
+        })
+          .then((response) => response.json())
+          .then((result) => {
+            console.log("Success:", result);
+            // Handle the API response
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            // Handle any errors
+          });
+      }
+    </script>
+  </body>
+</html>

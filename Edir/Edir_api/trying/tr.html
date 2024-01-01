@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>User Registration</title>
+  </head>
+  <body>
+    <h1>hello</h1>
+
+    <script>
+      function checkLoginStatus() {
+        if (localStorage.getItem("username") != null) {
+          const username = localStorage.getItem("username");
+          const islogin = localStorage.getItem("loginStatus");
+
+          const check = { username, islogin };
+          console.log(check);
+          fetch("http://localhost:8080/Edir/edir_api/user/trying/login/check", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(check),
+          })
+            .then((response) => response.json())
+            .then((login) => {
+              if (!login.login) {
+                window.location.href = "/Edir/Edir_api/trying/login.html";
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        } else {
+          
+          window.location.href = "/Edir/Edir_api/trying/login.html";
+        }
+      }
+      checkLoginStatus();
+    </script>
+  </body>
+</html>

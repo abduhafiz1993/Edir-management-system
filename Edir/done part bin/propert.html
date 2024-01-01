@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../bootstrap-4.4.1-dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../style/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      
+      <div class="card">
+        <form class="p-3 propertAdd" id="addProperty">
+          <div class="form-group">
+            <label for="boughtDate">Bought Date</label>
+            <input
+              type="date"
+              class="form-control"
+              id="boughtDate"
+              name="boughtDate"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" />
+          </div>
+          <div class="form-group">
+            <label for="quantity">Quantity</label>
+            <input
+              type="number"
+              class="form-control"
+              id="quantity"
+              name="quantity"
+            />
+          </div>
+          <div class="form-group">
+            <label for="file">File</label>
+            <input
+              type="file"
+              class="form-control-file"
+              id="file"
+              name="file"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+    <script>
+      const form = document.getElementById("addProperty");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault(); // Prevent the default form submission
+
+        // Get the form data
+        const formData = new FormData(form);
+
+        fetch(`http://localhost:8080/Edir/edir_api/property`, {
+          method: "POST",
+          body: formData,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      });
+    </script>
+  </body>
+</html>

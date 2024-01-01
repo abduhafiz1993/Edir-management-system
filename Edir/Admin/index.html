@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ginjo Edir</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../bootstrap-4.4.1-dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="../style/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"
+    />
+    <!--Replace with your tailwind.css once created-->
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet" />
+    <!--Totally optional :) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="/srcipt/constant.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"
+      integrity="sha256-xKeoJ50pzbUGkpQxDYHD7o7hxe0LaOGeguUidbq6vis="
+      crossorigin="anonymous"
+    ></script>
+
+    <style>
+      iframe {
+        display: none;
+        transform: translateY(-10%);
+        position: relative;
+      }
+    </style>
+    <script type="text/javascript">
+      const nonegoogle = document.getElementById("google_translate_element");
+      nonegoogle;
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          { pageLanguage: "en", includedLanguages: "am,en,om" },
+          "google_translate_element"
+        );
+      }
+    </script>
+    <script
+      type="text/javascript"
+      src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+    ></script>
+  </head>
+  <style>
+    .feature-item .col {
+      min-width: 50%;
+    }
+    .manage-service {
+      max-width: 90%;
+      margin: auto;
+      flex-wrap: wrap;
+    }
+  </style>
+  <body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <i id="toggleSidebar" class="fa-solid fa-bars toggleSidebar"></i>
+      <div class="container">
+        <a class="navbar-brand logo" href="../admin">
+          <img src="../asset/mylast logo.png" height="30px" alt="logo" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fa-solid fa-bars toggleSidebar"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="../admin"
+                ><i class="fa-solid fa-house"></i> Home</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#About" onclick="About()"
+                ><i class="fa-solid fa-circle-info"></i> About</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#services" onclick="Services()"
+                ><i class="fa-solid fa-gifts"></i> Services</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="Contact()"
+                ><i class="fa-solid fa-address-book"></i> Contact developers</a
+              >
+            </li>
+            <li class="nav-item right-align">
+              <a class="nav-link" href="#" onclick="logout()">logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div
+      class="modal fade"
+      id="successModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Success Message</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Your submission was successful!</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="warningModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Error message</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>unfortunatly error ocur</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-warning" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="voteModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Success Message</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Your request done successfully</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="sidebar" class="col-md-3 col-lg-2 side-bar">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link dashboard" href="#Dashboard" onclick="Dashboard()"
+            ><i class="fa-solid fa-table-columns"></i>Dashboard</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link list-member" href="#list" onclick="listMember()"
+            ><i class="fa-solid fa-users"></i>Member list</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link add-member" href="#Addmember" onclick="addMember()"
+            ><i class="fa-solid fa-user-plus"></i>Add member</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link properties"
+            href="#Properties"
+            onclick="propertyList()"
+            ><i class="fa-solid fa-cart-plus"></i>Property</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link events" href="#Events" onclick="Events()"
+            ><i class="fa-solid fa-calendar-plus"></i> Events</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link task" href="#task" onclick="taskAllocation()"
+            ><i class="fa-solid fa-calendar-plus"></i> Task Allocation</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link menu vote" href="#Reports" onclick="votingPage()"
+            ><i class="fa-solid fa-check-to-slot"></i> Voting
+            <span class="notification-count"></span
+          ></a>
+        </li>
+
+        <li class="nav-item">
+          <div id="google_translate_element"></div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="container main-dashboard">
+      <script>
+        function logout() {
+          localStorage.removeItem("username");
+          window.location.href = "/Landing/";
+        }
+        function About() {
+          const mainDashboard = document.querySelector(".main-dashboard");
+          mainDashboard.classList.add("setVisible-open");
+          mainDashboard.textContent = "";
+          const cardDiv = document.createElement("div");
+          cardDiv.className = "card";
+
+          const cardHeaderDiv = document.createElement("div");
+          cardHeaderDiv.className = "card-header";
+
+          const headerElement = document.createElement("h4");
+          headerElement.className = "Header-short-line";
+          headerElement.textContent = "About Edir Management system";
+
+          cardHeaderDiv.appendChild(headerElement);
+
+          const cardBodyDiv = document.createElement("div");
+          cardBodyDiv.className = "card-body";
+
+          const paragraphElement = document.createElement("p");
+          paragraphElement.className = "text-justify";
+          paragraphElement.textContent =
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam eligendi possimus a sit beatae temporibus doloribus magni! Nemo ducimus at debitis dolorem provident exercitationem minima, eveniet, quibusdam, nisi praesentium expedita.";
+
+          cardBodyDiv.appendChild(paragraphElement);
+
+          cardDiv.appendChild(cardHeaderDiv);
+          cardDiv.appendChild(cardBodyDiv);
+          mainDashboard.appendChild(cardDiv);
+        }
+        function Services() {
+          const mainDashboard = document.querySelector(".main-dashboard");
+          mainDashboard.classList.add("setVisible-open");
+          mainDashboard.textContent = "";
+          mainDashboard.innerHTML = `
+                     <div class="row manage-service text-center">
+                       <div class="col-sm-5  m-1 card ">
+                         <div class="feature-item">
+                           <i class="fas fa-users"></i>
+                           <h3>Property Management</h3>
+                           <p>
+                             By enabling the admin and assistant to record all property
+                             informaion on the system database and enables them to display
+                             any time.
+                           </p>
+                         </div>
+                       </div>
+                       <div class="col-sm-5 m-1 card">
+                         <div class="feature-item">
+                           <i class="fas fa-hands-helping"></i>
+                           <h3>Event Announcement</h3>
+                           <p>
+                             New events are announced to every member with every detailed
+                             informaion by the admins.
+                           </p>
+                         </div>
+                       </div>
+                       <div class="col-sm-5  m-1 card">
+                         <div class="feature-item">
+                           <i class="fas fa-calendar-alt"></i>
+                           <h3>Voting</h3>
+                           <p>
+                             When it is voting session is arrived every members will be able
+                             to vote the leader of their Edir by using this system.
+                           </p>
+                         </div>
+                       </div>
+                       <div class="col-sm-5  m-1 card">
+                         <div class="feature-item">
+                           <i class="fas fa-calendar-alt"></i>
+                           <h3>Task Alocation</h3>
+                           <p>
+                             When there is an event tasks are assigned to each user and each
+                             member can login to this system and see every detail about task
+                             assigned to him/her.
+                           </p>
+                         </div>
+                       </div>
+                       <div class="col-sm-5  m-1 card">
+                         <div class="feature-item">
+                           <i class="fas fa-calendar-alt"></i>
+                           <h3>Member Management</h3>
+                           <p>
+                             Adminstrators can add new members to the system and remove those
+                             who have violate the rules and regulations of the Edir.
+                           </p>
+                         </div>
+                       </div>
+                     </div>
+        `;
+        }
+        function Contact() {
+          const mainDashboard = document.querySelector(".main-dashboard");
+          mainDashboard.classList.add("setVisible-open");
+          mainDashboard.textContent = "";
+          mainDashboard.innerHTML = `    <div class="card">
+                       <div class="card-header">
+                         <h5 class="Header-short-line">System developers contact information</h5>
+                       </div>
+                       <div class="card-body">
+                         <div class="card-title">
+                           Firaol Tesfaye:082033801
+                         </div>
+                         <div class="card-title">
+                           Tokuma Abdisa :01394278
+                         </div>
+                       </div>
+                     </div>`;
+        }
+        function closeSideBar() {
+          const mainDashboard = document.querySelector(".main-dashboard");
+          const sidebar = document.getElementById("sidebar");
+          if (window.innerWidth < 750) {
+            overLay.overlayRemove(sidebar);
+          }
+        }
+
+        function setActiveNavLink(element) {
+          const navLinks = document.querySelectorAll(".nav-link");
+          navLinks.forEach((link) => {
+            link.classList.remove("side-bar-active");
+          });
+          element.classList.add("side-bar-active");
+        }
+        window.addEventListener("load", () => {
+          const mainDashboard = document.querySelector(".main-dashboard");
+          mainDashboard.classList.add("setVisible-open");
+          setActiveNavLink(document.querySelector(".dashboard"));
+          synchronizeNotification();
+          //     setInterval(synchronizeNotification, 1000);
+        });
+        function Dashboard() {
+          closeSideBar();
+          const mainDashboard = document.querySelector(".main-dashboard");
+          mainDashboard.classList.add("setVisible-open");
+          setActiveNavLink(document.querySelector(".dashboard"));
+          window.location.href = "./";
+        }
+
+        function Reports() {
+          closeSideBar();
+          const mainDashboard = document.querySelector(".main-dashboard");
+          mainDashboard.classList.add("setVisible-open");
+          mainDashboard.textContent = "";
+          mainDashboard.innerHTML = "<h1>hello report page</h1>";
+
+          setActiveNavLink(document.querySelector(".report"));
+        }
+
+        function Properties() {
+          closeSideBar();
+          const mainDashboard = document.querySelector(".main-dashboard");
+
+          mainDashboard.classList.add("setVisible-open");
+          mainDashboard.textContent = "";
+          mainDashboard.innerHTML = "<h1>hello properties page</h1>";
+          setActiveNavLink(document.querySelector(".properties"));
+        }
+
+        function systemLog() {
+          closeSideBar();
+          const mainDashboard = document.querySelector(".main-dashboard");
+          mainDashboard.classList.add("setVisible-open");
+          mainDashboard.textContent = "";
+          mainDashboard.innerHTML = "<h1>hello System log page</h1>";
+          setActiveNavLink(document.querySelector(".systemlog"));
+        }
+        const getEdirInfo = {
+          memberInfo: () => {
+            const url = `http://${URL}:8080/Edir/edir_api/user/numberOfuser`;
+            fetch(url)
+              .then((response) => response.json())
+              .then((numberOfuser) => {
+                const EdirMemberInfo = document.createElement("div");
+                const memberInfoInNUm =
+                  document.querySelector(".numberOfMember");
+                memberInfoInNUm.innerHTML = "";
+
+                document.querySelector(".newMember").textContent =
+                  numberOfuser[0].newUser;
+                const div = document.createElement("div");
+                div.innerHTML = `${numberOfuser[0].Female} Females </br> ${numberOfuser[0].Male} Males</br> Total ${numberOfuser[0].Member}`;
+                EdirMemberInfo.appendChild(div);
+                memberInfoInNUm.append(EdirMemberInfo);
+                document.querySelector(
+                  ".taskIn"
+                ).innerHTML = `${numberOfuser[0].task} Tasks`;
+                document.querySelector(
+                  ".events-lst"
+                ).innerHTML = `${numberOfuser[0].events} Events`;
+                document.querySelector(".member-some").innerHTML = ` <tr>
+                                                                        <td>${numberOfuser[0].fname} ${numberOfuser[0].lname}</td>
+                                                                        <td>${numberOfuser[0].joinedDate}</td>
+                                                                        <td>${numberOfuser[0].role}</td>
+                                                                      </tr>`;
+              })
+              .catch((error) => {
+                console.error("Error fetching login information:", error);
+              });
+          },
+        };
+        getEdirInfo.memberInfo();
+      </script>
+
+      <div class="analytic flex flex-col md:flex-row p-0">
+        <section>
+          <div id="main" class="main-content flex-1 bg-gray-100">
+            <div class="flex flex-wrap">
+              <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                <!--Metric Card-->
+                <div
+                  class="bg-gradient-to-b from-green-200 to-green-100 border-b-4 border-green-600 rounded-lg shadow-xl p-5"
+                >
+                  <div class="flex flex-row items-center">
+                    <div class="flex-shrink">
+                      <div class="rounded-full p-3 bg-green-600">
+                        <i class="fa fa-wallet fa-2x fa-inverse"></i>
+                      </div>
+                    </div>
+                    <div class="flex-1 text-right md:text-center">
+                      <h2 class="font-bold uppercase text-gray-600">
+                        Total Revenue
+                      </h2>
+                      <p class="font-bold text-2xl">
+                        203,791 BIRR
+                        <span class="text-green-500"
+                          ><i class="fas fa-caret-up"></i
+                        ></span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <!--/Metric Card-->
+              </div>
+              <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                <!--Metric Card-->
+                <div
+                  class="bg-gradient-to-b from-pink-200 to-pink-100 border-b-4 border-pink-500 rounded-lg shadow-xl p-4"
+                >
+                  <div class="flex flex-row items-center">
+                    <div class="flex-shrink">
+                      <div class="rounded-full p-3 bg-pink-600">
+                        <i class="fas fa-users fa-2x fa-inverse"></i>
+                      </div>
+                    </div>
+                    <div
+                      class="flex-1 text-right md:text-center"
+                      onclick="listMember()"
+                    >
+                      <h2 class="font-bold uppercase text-gray-600">
+                        Total Members
+                      </h2>
+                      <p class="font-bold text-2xl">
+                        <span class="numberOfMember"></span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <!--/Metric Card-->
+              </div>
+              <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                <!--Metric Card-->
+                <div
+                  class="bg-gradient-to-b from-yellow-200 to-yellow-100 border-b-4 border-yellow-600 rounded-lg shadow-xl p-5"
+                >
+                  <div class="flex flex-row items-center">
+                    <div class="flex-shrink pr-4">
+                      <div class="rounded-full p-3 bg-yellow-600">
+                        <i class="fas fa-user-plus fa-2x fa-inverse"></i>
+                      </div>
+                    </div>
+                    <div
+                      class="flex-1 text-right md:text-center"
+                      onclick="listMember()"
+                    >
+                      <h2 class="font-bold uppercase text-gray-600">
+                        New Users
+                      </h2>
+                      <p class="font-bold text-2xl newMember">
+                        <span class="text-yellow-600"
+                          ><i class="fas fa-caret-up"></i
+                        ></span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <!--/Metric Card-->
+              </div>
+              <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                <!--Metric Card-->
+                <div
+                  class="bg-gradient-to-b from-blue-200 to-blue-100 border-b-4 border-blue-500 rounded-lg shadow-xl p-5"
+                >
+                  <div class="flex flex-row items-center">
+                    <div class="flex-shrink pr-4">
+                      <div class="rounded-full p-3 bg-blue-600">
+                        <i class="fas fa-server fa-2x fa-inverse"></i>
+                      </div>
+                    </div>
+                    <div class="flex-1 text-right md:text-center">
+                      <h2 class="font-bold uppercase text-gray-600">
+                        Property
+                      </h2>
+                      <p class="font-bold text-3xl">152 Items</p>
+                    </div>
+                  </div>
+                </div>
+                <!--/Metric Card-->
+              </div>
+              <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                <!--Metric Card-->
+                <div
+                  onclick="taskAllocation()"
+                  class="bg-gradient-to-b from-indigo-200 to-indigo-100 border-b-4 border-indigo-500 rounded-lg shadow-xl p-5"
+                >
+                  <div class="flex flex-row items-center">
+                    <div class="flex-shrink pr-4">
+                      <div class="rounded-full p-3 bg-indigo-600">
+                        <i class="fas fa-tasks fa-2x fa-inverse"></i>
+                      </div>
+                    </div>
+                    <div class="flex-1 text-right md:text-center">
+                      <h2 class="font-bold uppercase text-gray-600">Tasks</h2>
+                      <p class="font-bold text-3xl taskIn">32 tasks</p>
+                    </div>
+                  </div>
+                </div>
+                <!--/Metric Card-->
+              </div>
+              <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                <!--Metric Card-->
+                <div
+                  class="bg-gradient-to-b from-red-200 to-red-100 border-b-4 border-red-500 rounded-lg shadow-xl p-5"
+                >
+                  <div class="flex flex-row items-center">
+                    <div class="flex-shrink pr-4">
+                      <div class="rounded-full p-3 bg-red-600">
+                        <i class="fas fa-inbox fa-2x fa-inverse"></i>
+                      </div>
+                    </div>
+                    <div
+                      class="flex-1 text-right md:text-center"
+                      onclick="Events()"
+                    >
+                      <h2 class="font-bold uppercase text-gray-600">Events</h2>
+                      <p class="font-bold text-3xl events-lst">
+                        3
+                        <span class="text-red-500"
+                          ><i class="fas fa-caret-up"></i
+                        ></span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <!--/Metric Card-->
+              </div>
+            </div>
+            <div class="flex flex-row flex-wrap flex-grow mt-2">
+              <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                <!--Graph Card-->
+                <div class="bg-white border-transparent rounded-lg shadow-xl">
+                  <div
+                    class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2"
+                  >
+                    <h1 class="font-bold uppercase text-gray-600">
+                      Newly Purchased Items
+                    </h1>
+                  </div>
+                  <div class="p-5">
+                    <canvas
+                      id="chartjs-7"
+                      class="chartjs"
+                      width="undefined"
+                      height="undefined"
+                    ></canvas>
+                    <script>
+                      new Chart(document.getElementById("chartjs-7"), {
+                        type: "bar",
+                        data: {
+                          labels: ["January", "February", "March", "April"],
+                          datasets: [
+                            {
+                              label: "months",
+                              data: [10, 20, 30, 40],
+                              borderColor: "rgb(255, 99, 132)",
+                              backgroundColor: "rgba(255, 99, 132, 0.2)",
+                            },
+                            {
+                              label: "items",
+                              data: [5, 15, 10, 30],
+                              type: "line",
+                              fill: false,
+                              borderColor: "rgb(54, 162, 235)",
+                            },
+                          ],
+                        },
+                        options: {
+                          scales: {
+                            yAxes: [
+                              {
+                                ticks: {
+                                  beginAtZero: true,
+                                },
+                              },
+                            ],
+                          },
+                        },
+                      });
+                    </script>
+                  </div>
+                </div>
+                <!--/Graph Card-->
+              </div>
+
+              <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                <!--Graph Card-->
+                <div class="bg-white border-transparent rounded-lg shadow-xl">
+                  <div
+                    class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2"
+                  >
+                    <h2 class="font-bold uppercase text-gray-600">
+                      Events Graph
+                    </h2>
+                  </div>
+                  <div class="p-5">
+                    <canvas
+                      id="chartjs-0"
+                      class="chartjs"
+                      width="undefined"
+                      height="undefined"
+                    ></canvas>
+                    <script>
+                      new Chart(document.getElementById("chartjs-0"), {
+                        type: "line",
+                        data: {
+                          labels: [
+                            "January",
+                            "February",
+                            "March",
+                            "April",
+                            "May",
+                            "June",
+                            "July",
+                          ],
+                          datasets: [
+                            {
+                              label: "Events",
+                              data: [20, 15, 11, 25, 8, 21, 18],
+                              fill: false,
+                              borderColor: "rgb(75, 192, 192)",
+                              lineTension: 0.1,
+                            },
+                          ],
+                        },
+                        options: {},
+                      });
+                    </script>
+                  </div>
+                </div>
+                <!--/Graph Card-->
+              </div>
+
+              <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                <!--Graph Card-->
+                <div class="bg-white border-transparent rounded-lg shadow-xl">
+                  <div
+                    class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2"
+                  >
+                    <h2 class="font-bold uppercase text-gray-600">
+                      Newly Joined Members Graph
+                    </h2>
+                  </div>
+                  <div class="p-5">
+                    <canvas
+                      id="chartjs-1"
+                      class="chartjs"
+                      width="undefined"
+                      height="undefined"
+                    ></canvas>
+                    <script>
+                      new Chart(document.getElementById("chartjs-1"), {
+                        type: "bar",
+                        data: {
+                          labels: [
+                            "January",
+                            "February",
+                            "March",
+                            "April",
+                            "May",
+                            "June",
+                            "July",
+                          ],
+                          datasets: [
+                            {
+                              label: "New Members",
+                              data: [2, 1, 5, 7, 0, 5, 10],
+                              fill: false,
+                              backgroundColor: [
+                                "rgba(255, 99, 132, 0.2)",
+                                "rgba(255, 159, 64, 0.2)",
+                                "rgba(255, 205, 86, 0.2)",
+                                "rgba(75, 192, 192, 0.2)",
+                                "rgba(54, 162, 235, 0.2)",
+                                "rgba(153, 102, 255, 0.2)",
+                                "rgba(201, 203, 207, 0.2)",
+                              ],
+                              borderColor: [
+                                "rgb(255, 99, 132)",
+                                "rgb(255, 159, 64)",
+                                "rgb(255, 205, 86)",
+                                "rgb(75, 192, 192)",
+                                "rgb(54, 162, 235)",
+                                "rgb(153, 102, 255)",
+                                "rgb(201, 203, 207)",
+                              ],
+                              borderWidth: 1,
+                            },
+                          ],
+                        },
+                        options: {
+                          scales: {
+                            yAxes: [
+                              {
+                                ticks: {
+                                  beginAtZero: true,
+                                },
+                              },
+                            ],
+                          },
+                        },
+                      });
+                    </script>
+                  </div>
+                </div>
+                <!--/Graph Card-->
+              </div>
+
+              <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                <!--Graph Card-->
+                <div class="bg-white border-transparent rounded-lg shadow-xl">
+                  <div
+                    class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2"
+                  >
+                    <h5 class="font-bold uppercase text-gray-600">
+                      Users Graph
+                    </h5>
+                  </div>
+                  <div class="p-5">
+                    <canvas
+                      id="chartjs-4"
+                      class="chartjs"
+                      width="undefined"
+                      height="undefined"
+                    ></canvas>
+                    <script>
+                      new Chart(document.getElementById("chartjs-4"), {
+                        type: "doughnut",
+                        data: {
+                          labels: ["Admins", "Assistants", "Members"],
+                          datasets: [
+                            {
+                              label: "Issues",
+                              data: [2, 5, 250],
+                              backgroundColor: [
+                                "rgb(255, 99, 132)",
+                                "rgb(54, 162, 235)",
+                                "rgb(255, 205, 86)",
+                              ],
+                            },
+                          ],
+                        },
+                      });
+                    </script>
+                  </div>
+                </div>
+                <!--/Graph Card-->
+              </div>
+
+              <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                <!--Table Card-->
+                <div class="bg-white border-transparent rounded-lg shadow-xl">
+                  <div
+                    class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2"
+                  >
+                    <h2 class="font-bold uppercase text-gray-600">
+                      Some Users
+                    </h2>
+                  </div>
+                  <div class="p-5">
+                    <table class="w-full p-5 text-gray-700">
+                      <thead>
+                        <tr>
+                          <th class="text-left text-blue-900">Name</th>
+                          <th class="text-left text-blue-900">Joined Date</th>
+                          <th class="text-left text-blue-900">Role</th>
+                        </tr>
+                      </thead>
+                      <tbody class="member-some"></tbody>
+                    </table>
+
+                    <p class="py-2">
+                      <a onclick="listMember()" href="#">See More users...</a>
+                    </p>
+                  </div>
+                </div>
+                <!--/table Card-->
+              </div>
+
+              <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                <!--Advert Card-->
+                <div class="bg-white border-transparent rounded-lg shadow-xl">
+                  <div
+                    class="bg-gradient-to-b from-gray-300 to-gray-100 uppercase text-gray-800 border-b-2 border-gray-300 rounded-tl-lg rounded-tr-lg p-2"
+                  >
+                    <h2 class="font-bold uppercase text-gray-600">Advert</h2>
+                  </div>
+                  <div class="p-5 text-center">
+                    <h1>hello</h1>
+                  </div>
+                </div>
+                <!--/Advert Card-->
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <script>
+        /*Toggle dropdown list*/
+        function toggleDD(myDropMenu) {
+          document.getElementById(myDropMenu).classList.toggle("invisible");
+        }
+        /*Filter dropdown options*/
+        function filterDD(myDropMenu, myDropMenuSearch) {
+          var input, filter, ul, li, a, i;
+          input = document.getElementById(myDropMenuSearch);
+          filter = input.value.toUpperCase();
+          div = document.getElementById(myDropMenu);
+          a = div.getElementsByTagName("a");
+          for (i = 0; i < a.length; i++) {
+            if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+              a[i].style.display = "";
+            } else {
+              a[i].style.display = "none";
+            }
+          }
+        }
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function (event) {
+          if (
+            !event.target.matches(".drop-button") &&
+            !event.target.matches(".drop-search")
+          ) {
+            var dropdowns = document.getElementsByClassName("dropdownlist");
+            for (var i = 0; i < dropdowns.length; i++) {
+              var openDropdown = dropdowns[i];
+              if (!openDropdown.classList.contains("invisible")) {
+                openDropdown.classList.add("invisible");
+              }
+            }
+          }
+        };
+      </script>
+    </div>
+
+    <div id="overlay"></div>
+    <script src="./property.js"></script>
+    <script src="./script.js"></script>
+    <script src="./userManagement.js"></script>
+    <script src="./loginCheck.js"></script>
+    <script src="./taskAllocation.js"></script>
+    <script src="./messagingApp.js"></script>
+    <script src="./MemberProfile.js"></script>
+    <script src="/srcipt/registration.js"></script>
+    <script src="./voting.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

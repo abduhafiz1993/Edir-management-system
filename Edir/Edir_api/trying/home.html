@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>login success</h2>
+    <button id="logoutBtn">logout</button>
+    <script>
+      document
+        .getElementById("logoutBtn")
+        .addEventListener("click", function () {
+          fetch('http://localhost:8080/Edir/edir_api/user/trying/logout')
+            .then(function (response) {
+              // Handle the response from the server
+              if (response.ok) {
+                // Redirect to the login page or any other relevant page
+                localStorage.removeItem("username");
+                localStorage.removeItem("loginStatus");
+                window.location.href = "/Edir/Edir_api/trying/login.html";
+              } else {
+                // Display an error message or perform any other actions
+                console.log("Logout failed");
+              }
+            })
+            .catch(function (error) {
+              // Handle any network or other errors
+              console.error("Error:", error);
+            });
+        });
+
+      // Check if the user is logged in
+      function checkLoginStatus() {
+        if (localStorage.getItem("username") != null) {
+          const username = localStorage.getItem("username");
+          const islogin = localStorage.getItem("loginStatus");
+          const role = localStorage.getItem("role");
+          const check = { username, islogin, role };
+          fetch("http://localhost:8080/Edir/edir_api/user/login/check", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(check),
+          })
+            .then((response) => response.json())
+            .then((login) => {
+              if (!login.login) {
+              //window.location.href = "/Edir/Edir_api/trying/login.html";
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        } else {
+          window.location.href = "/Edir/Edir_api/trying/login.html";
+        }
+      }
+      checkLoginStatus();
+    </script>
+  </body>
+</html>

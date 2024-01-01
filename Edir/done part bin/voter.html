@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="./bootstrap-4.4.1-dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Person Voting App</title>
+  </head>
+  <style>
+    .userProfile img {
+      width: 100%;
+      border-radius: 50%;
+      aspect-ratio: 1/1;
+    }
+    .votingAdmin .card-header {
+      padding: 1px;
+    }
+    .candidate-name {
+      text-transform: capitalize;
+    }
+    .menu {
+      position: relative;
+      display: inline-block;
+    }
+
+    .notification {
+      position: relative;
+    }
+
+    .notification-count {
+      position: absolute;
+      top: -1px;
+      right: -3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      background-color: red;
+      color: white;
+      font-size: 12px;
+      border-radius: 50%;
+    }
+  </style>
+  <body>
+    <div class="container votingAdmin ">
+      <div class="card mt-5">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container">
+            <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+          <i class="fa-solid fa-bars toggleSidebar"></i>
+          </button>
+            <div class="collapse navbar-collapse justify-content-end">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="#Requests" onclick="getCandidate()"
+                    >Requests</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link menu"
+                    href="#Initaite_Vote"
+                    onclick="initaiteElection()"
+                    >Start Election <span class="notification-count">0</span></a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#End_Vote" onclick="endElection()"
+                    >End Vote</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a
+                    class="nav-link"
+                    href="#End_Vote"
+                    onclick="electionResult()"
+                    >Result</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <div class="voting-system">
+
+        </div>
+      </div>
+    </div>
+    <script>
+      synchronizeElection();
+      function getCandidate() {
+        const container = document.querySelector(".voting-system");
+        fetch(`http://localhost:8080/Edir/edir_api/user/voting`)
+          .then((response) => response.json())
+          .then((candidate) => {
+            const candidateRequest =
+              document.querySelector(".cand-requestlist");
+            candidateRequest.textContent = "";
+            if (candidate && Array.isArray(candidate)) {
+              candidate.forEach((person) => {
+                const alertDiv = document.createElement("div");
+                alertDiv.classList.add("alert", "alert-primary", "row");
+                const userProfileDiv = document.createElement("div");
+                userProfileDiv.classList.add("col-2", "userProfile");
+                const userProfileImg = document.createElement("img");
+                userProfileImg.classList.add("userProfile");
+                userProfileImg.src = "/Home Page/Images/Hero.jfif";
+                userProfileImg.alt = "";
+                userProfileDiv.appendChild(userProfileImg);
+
+                const colDiv = document.createElement("div");
+                colDiv.classList.add("col");
+                const candidateNameH2 = document.createElement("h2");
+                candidateNameH2.classList.add("candidate-name");
+                candidateNameH2.textContent = person.fname + " " + person.lname;
+                const descriptionDiv = document.createElement("div");
+                descriptionDiv.textContent = person.letter;
+                const joinedDateDiv = document.createElement("div");
+                joinedDateDiv.innerHTML =
+                  "<b>Joined date:</b> " + person.joinedDate;
+                const education = document.createElement("div");
+                education.innerHTML = "<b>Education:</b> " + person.education;
+                const divButton = document.createElement("div");
+                divButton.className = "btn-approval";
+                divButton.id = person.username;
+                const approveButton = document.createElement("button");
+                approveButton.classList.add("btn", "btn-primary");
+                approveButton.textContent = "Approve";
+                approveButton.addEventListener("click", function () {
+                  Approve(person.username, true);
+                });
+
+                const rejectButton = document.createElement("button");
+                rejectButton.classList.add("btn", "btn-danger");
+                rejectButton.textContent = "Reject";
+                rejectButton.addEventListener("click", function () {
+                  Approve(person.username, false);
+                });
+
+                colDiv.appendChild(candidateNameH2);
+                colDiv.appendChild(descriptionDiv);
+                colDiv.appendChild(joinedDateDiv);
+                colDiv.appendChild(education);
+                divButton.appendChild(approveButton);
+                divButton.appendChild(rejectButton);
+                colDiv.appendChild(divButton);
+                alertDiv.appendChild(userProfileDiv);
+                alertDiv.appendChild(colDiv);
+                candidateRequest.appendChild(alertDiv);
+                container.appendChild(candidateRequest);
+                if (person.accepted !== null) {
+                  const parentDiv = document.getElementById(person.username);
+                  const buttons = parentDiv.getElementsByTagName("button");
+                  for (let i = 0; i < buttons.length; i++) {
+                    buttons[i].disabled = true;
+                  }
+                }
+              });
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+
+        function Approve(username, accepted) {
+          const url = `http://localhost:8080/Edir/edir_api/user/candidate/approval`;
+          const vote = {
+            username, //candidate username
+            accepted,
+          };
+          fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(vote),
+          })
+            .then((response) => response.json())
+            .then((task) => {
+              const parentDiv = document.getElementById(username);
+              const buttons = parentDiv.getElementsByTagName("button");
+              for (let i = 0; i < buttons.length; i++) {
+                buttons[i].disabled = true;
+              }
+              const msg = document.createElement("span");
+              msg.className = " alert alert-success p-2";
+              msg.textContent = "Done!!";
+              parentDiv.appendChild(msg);
+            })
+            .catch((er) => {
+              console.log(er);
+            });
+        }
+      }
+      function initaiteElection() {
+        const cardHeaderDiv = document.createElement("div");
+        cardHeaderDiv.className = "card-header";
+
+        const headerText = document.createElement("h3");
+        headerText.className = "Header-short-line";
+        headerText.textContent = "Start Election";
+
+        cardHeaderDiv.appendChild(headerText);
+
+        const cardBodyDiv = document.createElement("div");
+        cardBodyDiv.className = "card-body cand-requestlist";
+
+        const message = document.createElement("h6");
+        message.textContent = "If you think that this is election time please ";
+        const strong = document.createElement("strong");
+        strong.textContent = "click";
+        message.appendChild(strong);
+        message.insertAdjacentText(
+          "beforeend",
+          " the below button and start the election for leader"
+        );
+
+        const startElectionButton = document.createElement("button");
+        startElectionButton.className = "btn btn-primary start-election";
+        startElectionButton.addEventListener("click", () => {
+          setElection();
+        });
+
+        const icon = document.createElement("i");
+        icon.className = "fa-solid fa-check-to-slot";
+
+        const buttonText = document.createTextNode(" Start Election now");
+
+        startElectionButton.appendChild(icon);
+        startElectionButton.appendChild(buttonText);
+
+        cardBodyDiv.appendChild(message);
+        cardBodyDiv.appendChild(startElectionButton);
+
+        const container = document.querySelector(".voting-system");
+        container.textContent = "";
+        container.appendChild(cardHeaderDiv);
+        container.appendChild(cardBodyDiv);
+
+        function setElection() {
+          const url = `http://localhost:8080/Edir/edir_api/user/Election/start`;
+          const start = true;
+          const election = {
+            start,
+          };
+          fetch(url, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(election),
+          })
+            .then((response) => response.json())
+            .then((election) => {
+              if (election.started) {
+                synchronizeElection();
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+        synchronizeElection();
+      }
+
+      function synchronizeElection() {
+        const url = "http://localhost:8080/Edir/edir_api/user/Election";
+        fetch(url)
+          .then((response) => response.json())
+          .then((synchronize) => {
+            console.log(synchronize); // Log the value of synchronize
+
+            if (synchronize.isElectionTime) {
+              const start_election = document.querySelector(".start-election");
+              start_election.disabled = true;
+            }
+            if (!synchronize.candidationTime && synchronize.isElectionTime) {
+              const start_election =
+                document.querySelectorAll(".start-candidation");
+              if (start_election) {
+                start_election.disabled = true;
+              }else {
+                ///
+              }
+            } else if (!synchronize.isElectionTime) {
+              const endElectionButton = document.querySelector(".end-election");
+              if (endElectionButton) {
+                endElectionButton.disabled = true;
+              } else {
+                ///
+              }
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+      function endElection() {
+        const cardHeaderDiv = document.createElement("div");
+        cardHeaderDiv.className = "card-header";
+
+        const headerText = document.createElement("h3");
+        headerText.className = "Header-short-line";
+        headerText.textContent = "End Election";
+
+        cardHeaderDiv.appendChild(headerText);
+
+        const cardBodyDiv = document.createElement("div");
+        cardBodyDiv.className = "card-body cand-requestlist";
+
+        const message = document.createElement("h6");
+        message.className = "alert alert-warning";
+        message.textContent = "if you think that voting is done click the ";
+        const strong = document.createElement("strong");
+        strong.textContent = "Button Below";
+        message.appendChild(strong);
+        message.insertAdjacentText(
+          "beforeend",
+          " But keep in mind that the result till now will be anaounced to all member and the election end"
+        );
+        const startElectionButton = document.createElement("button");
+        startElectionButton.className = "btn btn-warning end-election";
+
+        const icon = document.createElement("i");
+        icon.className = "fa-solid fa-check-to-slot";
+
+        const buttonText = document.createTextNode(" End Election now");
+        startElectionButton.appendChild(icon);
+        startElectionButton.appendChild(buttonText);
+
+        cardBodyDiv.appendChild(message);
+        cardBodyDiv.appendChild(startElectionButton);
+
+        const container = document.querySelector(".voting-system");
+        container.textContent = "";
+        container.appendChild(cardHeaderDiv);
+        container.appendChild(cardBodyDiv);
+        synchronizeElection();
+      }
+
+      function electionResult() {
+        const cardHeaderDiv = document.createElement("div");
+        cardHeaderDiv.className = "card-header";
+
+        const headerText = document.createElement("h3");
+        headerText.className = "Header-short-line";
+        headerText.textContent = "Election Result";
+
+        cardHeaderDiv.appendChild(headerText);
+
+        const cardBodyDiv = document.createElement("div");
+        cardBodyDiv.className = "card-body cand-requestlist";
+
+        const message = document.createElement("h6");
+        message.className = "alert alert-secondary";
+        message.textContent =
+          "if you want to anounce and see the winner of the election pls click the below button ";
+
+        const startElectionButton = document.createElement("button");
+        startElectionButton.className = "btn btn-primary end-election";
+        startElectionButton.addEventListener("click", () => {
+          checkResultNow();
+        });
+        const icon = document.createElement("i");
+        icon.className = "fa-solid fa-check-to-slot";
+
+        const buttonText = document.createTextNode(" End Election now");
+
+        startElectionButton.appendChild(icon);
+        startElectionButton.appendChild(buttonText);
+
+        cardBodyDiv.appendChild(message);
+        cardBodyDiv.appendChild(startElectionButton);
+
+        const container = document.querySelector(".voting-system");
+        container.textContent = "";
+        container.appendChild(cardHeaderDiv);
+        container.appendChild(cardBodyDiv);
+        synchronizeElection();
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

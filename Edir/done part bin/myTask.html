@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>my task</title>
+    <link
+      rel="stylesheet"
+      href="./bootstrap-4.4.1-dist/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="task-viewer">
+      <div class="card">
+        <div class="card-header">
+          <h6 class="Header-short-line">My task</h6>
+        </div>
+        <div class="card-body my-task">
+          <div class="alert alert-primary row-cols-2">
+            <b> <u>Title:</u> </b> <span>Cooking</span> <br />
+            <b> <u>Location:</u> </b> <span>addis ketema</span> <br />
+            <b> <u>Time:</u> </b> <span>12:00 12/23/2023</span>
+            <div class="message-time">12:00 12/23/2023</div>
+            <button class="btn btn-primary">Available for this task</button>
+            <button class="btn btn-secondary">I'm busy for this task</button>
+            <button id="lang-switcher">change</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      // Example language switcher using a button click event
+      const username = "asas";
+      const url = `http://localhost:8080/Edir/edir_api/user/Task/mytask`;
+      const input = {
+        username,
+      };
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(input),
+      })
+        .then((response) => response.json())
+        .then((task) => {
+          const myTask = document.querySelector(".my-task");
+          myTask.textContent = "";
+          if (task && Array.isArray(task)) {
+            console.log(task)
+            task.forEach((tsk) => {
+              const alertDiv = document.createElement("div");
+              alertDiv.className = "alert alert-primary row-cols-2";
+
+              const elements = [
+                { label: "<u>Title: </u>", value: tsk.title },
+                { label: "<u>Location: </u>", value: tsk.location },
+                { label: "<u>Time: </u>", value: tsk.time },
+              ];
+
+              elements.forEach(({ label, value }) => {
+                const labelElement = document.createElement("b");
+                labelElement.innerHTML = label;
+
+                const valueElement = document.createElement("span");
+                valueElement.innerHTML = value;
+
+                alertDiv.appendChild(labelElement);
+                alertDiv.appendChild(valueElement);
+                alertDiv.appendChild(document.createElement("br"));
+              });
+
+              const messageTimeElement = document.createElement("div");
+              messageTimeElement.className = "message-time";
+              messageTimeElement.innerHTML = "12:00 12/23/2023";
+              alertDiv.appendChild(messageTimeElement);
+
+              const buttons = [
+                {
+                  className: "btn btn-primary",
+                  text: "Available for this task",
+                },
+                {
+                  className: "btn btn-secondary",
+                  text: "I'm busy for this task",
+                },
+              ];
+              buttons.forEach(({ className, text }) => {
+                const button = document.createElement("button");
+                button.className = className;
+                button.innerHTML = text;
+                alertDiv.appendChild(button);
+              });
+              myTask.append(alertDiv);
+            });
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+        
+    </script>
+  </body>
+</html>

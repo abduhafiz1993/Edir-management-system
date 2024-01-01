@@ -1,0 +1,98 @@
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.card-container .card {
+    width: 200px;
+    padding: 20px;
+    margin: 10px;
+    background-color: #f2f2f2;
+    text-align: center;
+}
+.card-container .card img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.card-container .card h3 {
+    font-size: 18px;
+    color: #333;
+}
+.card-container .card p {
+    font-size: 14px;
+    color: #666;
+}
+
+.description-card {
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.description-card h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.description-card p {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.5;
+}
+
+.welcome{
+    width:50%;
+    padding: 20px;
+    text-align: left;
+    background-color: #f2f2f2;
+}
+.welcome h1{
+    font-size: 50px;
+    margin-bottom: 10px;
+    padding: 5% 0;
+    color: #6650f5;
+}
+.welcome p{
+    font-size: 20px;
+    margin-bottom: 10px;
+    line-height: 1.5;
+    color:#6650f5;
+}
+.discription-card{
+    padding: 20px;
+    background-color: #f2f2f2;
+}
+.card-container > .card{
+    width: 30%;
+    padding: 20px;
+    margin: 10px;
+    background-color: #f2f2f2;
+    
+}
+@media only screen and (max-width: 768px) {
+
+    /* CSS rules for screens with a maximum height of 888px */
+    /* Add your styles here */
+    .welcome{
+        width:100%;
+        padding: 20px;
+        text-align: center;
+        background-image: url(imagesofindex/abba-jiffar-palace-jimma-ethiopia-fanos-ethipia-tours-and-travel.webp);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background: rgba(66, 176, 70, 0.3)
+    }
+    .welcome h1{
+        margin-bottom: 10px;
+        padding: 0;
+    }
+    .welcome p{
+        margin-bottom: 10px;
+        padding: 0;
+    }
+}
+
